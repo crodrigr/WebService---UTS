@@ -12,3 +12,8 @@
 ### 3. Definición incial de las dependencias del proyecto. 
 
 ![image](https://user-images.githubusercontent.com/31961588/155818300-3d125806-8610-4427-88e1-24634052b78d.png)
+
+### 4. Construcción del proyecto 
+
+![image](https://user-images.githubusercontent.com/31961588/155818669-7f11ee79-27d4-44e5-9647-aeb4c1ae0b31.png)
+
