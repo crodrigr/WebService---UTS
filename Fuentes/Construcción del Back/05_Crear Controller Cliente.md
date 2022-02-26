@@ -183,3 +183,20 @@ INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(7, '
 
 ```
 
+### 4. Se configura los parametros de conexion a la base de datos.
+
+![image](https://user-images.githubusercontent.com/31961588/155827662-5805859f-2cc7-4bb9-bc41-5b85fe027990.png)
+
+```Txt
+spring.datasource.url=jdbc:postgresql://localhost:5432/db_c4_g28_facturador_test
+spring.datasource.username=postgres
+spring.datasource.password=admin
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=create-drop
+logging.level.org.hibernate.SQL=debug
+
+server.port=${PORT:8080}
+
+```
+
