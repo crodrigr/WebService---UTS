@@ -201,3 +201,7 @@ server.port=${PORT:8080}
 
 ```
 
+### 5. Test consulta de clientes
+
+![image](https://user-images.githubusercontent.com/31961588/155827843-3fd4e8af-efa5-4816-bd9c-1387bc274bdc.png)
+
