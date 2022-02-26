@@ -20,7 +20,7 @@
 
 ![image](https://user-images.githubusercontent.com/31961588/155818669-7f11ee79-27d4-44e5-9647-aeb4c1ae0b31.png)
 
-### 5 Configuración de la dependencias en el poom.xml
+### 5 Configuración de las dependencias en el pom.xml
 
 ![image](https://user-images.githubusercontent.com/31961588/155820636-a524454f-baa8-4dec-b713-917f412b6319.png)
 
