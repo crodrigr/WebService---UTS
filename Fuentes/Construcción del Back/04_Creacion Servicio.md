@@ -19,3 +19,57 @@
 ![image](https://user-images.githubusercontent.com/31961588/155827092-54be7fcc-2dbb-4db0-8f35-c5ccd7644621.png)
 
 
+```Java
+package com.webservice.uts.models.services;
+
+import java.util.List;
+
+import com.webservice.uts.models.entites.Cliente;
+
+public interface IClienteService {
+	
+    public List<Cliente> findAll();
+	
+	public Cliente findById(Long id);
+	
+	public Cliente save(Cliente cliente);
+	
+	public void delete(Cliente cliente);
+}
+```
+
+```Java
+package com.webservice.uts.models.services;
+
+import java.util.List;
+
+import com.webservice.uts.models.entites.Cliente;
+
+public class ClienteServiceImpl  implements IClienteService {
+
+	@Override
+	public List<Cliente> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cliente findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cliente save(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+```
