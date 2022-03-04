@@ -107,7 +107,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import mintic2022.unab.edu.co.c4g28.facturador.models.entites.Region;
+
 
 @Entity
 @Table(name = "clientes")
@@ -182,6 +182,7 @@ public class Cliente implements Serializable {
 	
 	
 }
+
 
 ```
 
