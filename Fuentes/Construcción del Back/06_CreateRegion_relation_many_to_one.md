@@ -1,8 +1,13 @@
 # Creación del la clase entity Region y relación Many to one con Cliente
 
 - [Hibernate - Relations](https://www.adictosaltrabajo.com/2020/04/02/hibernate-onetoone-onetomany-manytoone-y-manytomany/)
+- [Working with Relationships in Spring Data REST](https://www.baeldung.com/spring-data-rest-relationships)
+- [Documentación oficial de spring boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#legal)
 
 ### 1. Creamos la clase entity Region
+
+
+
 
 La clase Region se crea dentro del package Entities. 
 
@@ -63,3 +68,9 @@ public class Region implements Serializable {
 
 }
 ```
+
+### 2 Relación entre región y cliente. 
+
+Una región tiene uno o muchos clientes y un cliente pertenece a una única región. Por parte de la región no nos interesa obtener los clientes por región. Por lo tanto, se convierte e una relación unidireccional desde cliente que si nos interesa saber a que región pertenece.  
+
+![image](https://user-images.githubusercontent.com/31961588/156847559-791a4e02-125d-402e-925a-27cd0be338e9.png)
