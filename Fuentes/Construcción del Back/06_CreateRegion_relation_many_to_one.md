@@ -514,4 +514,6 @@ public class ClienteRestController {
 	
 }
 ```
+#### 3.5 Consulta de regiones. 
+![image](https://user-images.githubusercontent.com/31961588/156852735-d0d7af15-5885-4733-a572-baec8c76be6d.png)
 
