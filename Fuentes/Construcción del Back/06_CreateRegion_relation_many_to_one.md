@@ -22,7 +22,7 @@ La clase region tiene dos atributos el Id de la región y nombre. Por ejemplo, i
 
 
 
-### 2. Codigo de la clase Region.
+#### 1.2 Codigo de la clase Region.
 
 ```Java
 package com.webservice.uts.models.entites;
@@ -227,4 +227,123 @@ INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(7, '
 #### 2.4 Consulta findAll Clientes
 
 ![image](https://user-images.githubusercontent.com/31961588/156850949-c3f61fd9-2823-4fb5-8d2f-f3f2482b9494.png)
+
+
+### 3. Crear un servicio rest para obtener el listado de regiones. 
+
+Este servicio es muy importante por que se va usar en el formulario del creación de cliente para selecionar a que región pertenece.
+
+#### 3.1 En la clase IClienteDao agregamos el método findAllRegiones()
+
+![image](https://user-images.githubusercontent.com/31961588/156851300-5c6c87dc-7255-49b3-9d05-583587651e73.png)
+
+```Java
+package mintic2022.unab.edu.co.c4g28.facturador.models.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import mintic2022.unab.edu.co.c4g28.facturador.models.entites.Cliente;
+import mintic2022.unab.edu.co.c4g28.facturador.models.entites.Region;
+
+public interface IClienteDao extends CrudRepository<Cliente,Long> {
+	
+	@Query("from Region")
+	public List<Region> findAllRegiones();
+
+}
+
+```
+
+#### 3.2 En la interface IClienteService add findAllRegiones
+
+![image](https://user-images.githubusercontent.com/31961588/156851934-3935e985-f3ea-4b69-aeb0-c87da0867278.png)
+
+#### 3.3 Código de interface IClienteService
+
+```Java
+package com.webservice.uts.models.services;
+
+import java.util.List;
+
+import com.webservice.uts.models.entites.Cliente;
+import com.webservice.uts.models.entites.Region;
+
+public interface IClienteService {
+	
+    public List<Cliente> findAll();
+	
+	public Cliente findById(Long id);
+	
+	public Cliente save(Cliente cliente);
+	
+	public void delete(Cliente cliente);
+	
+	public List<Region> findAllRegiones();
+
+}
+```
+
+#### 3.3 En la clase ClienteServiceImpl add la implementación del findAllRegiones()
+
+![image](https://user-images.githubusercontent.com/31961588/156852226-9517f46d-e126-4713-b707-c6bcbca9efad.png)
+
+#### 3.4 Código de la clase ClienteServiceImpl
+
+```Java
+package com.webservice.uts.models.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.webservice.uts.models.entites.Cliente;
+import com.webservice.uts.models.entites.Region;
+import com.webservice.uts.models.dao.IClienteDao;
+
+@Service
+public class ClienteServiceImpl  implements IClienteService {
+	
+	@Autowired
+	private IClienteDao clienteDao;
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Cliente> findAll() {
+		return (List<Cliente>) clienteDao.findAll();
+		
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Cliente findById(Long id) {
+		return  clienteDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public Cliente save(Cliente cliente) {
+		 return clienteDao.save(cliente);
+	}
+
+	@Override
+	@Transactional
+	public void delete(Cliente cliente) {
+		clienteDao.delete(cliente);
+		
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Region> findAllRegiones() {
+		return clienteDao.findAllRegiones();
+	}
+
+}
+
+```
 
