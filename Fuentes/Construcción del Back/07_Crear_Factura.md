@@ -11,7 +11,7 @@ Se crea la clase entity Producto.
 
 ![image](https://user-images.githubusercontent.com/31961588/160214742-dd7333d7-fa23-4ba8-999e-6b939df3d52e.png)
 
-#### Codigo de la clase producto
+### 1.2 Codigo de la clase producto
 
 ```java
 package com.webservice.uts.models.entites;
@@ -89,7 +89,7 @@ public class Producto  implements Serializable {
 
 ```
 
-## 1.2 Se add los scripts al archivo import.sql para insertar los datos de la tabla productos. 
+### 1.3 Se add los scripts al archivo import.sql para insertar los datos de la tabla productos. 
 
 ![image](https://user-images.githubusercontent.com/31961588/160215011-1220c3bb-ecd8-4686-a348-adc215bb4708.png)
 
