@@ -433,4 +433,28 @@ public interface IProductoDao extends CrudRepository<Producto, Long> {
 
 ```
 
+## 5 Creacion IFacturaDao
+
+![image](https://user-images.githubusercontent.com/31961588/160217406-1d9b04c2-c362-4d6d-8cd0-9ca3a6a98741.png)
+
+
+![image](https://user-images.githubusercontent.com/31961588/160217474-be7667bb-d71e-42ce-9fb7-f12fbb474e8a.png)
+
+### 5.1 Código de IFacturaDao
+
+```Java
+package com.webservice.uts.models.dao;
+
+
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.webservice.uts.models.entites.Factura;
+
+
+
+public interface IFacturaDao extends CrudRepository<Factura, Long> {
+
+}
+```
 
