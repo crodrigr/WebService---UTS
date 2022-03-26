@@ -395,3 +395,42 @@ INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES(3, 2, 6);
 
 
 ```
+
+
+## 4. Crear el IproductDao
+
+![image](https://user-images.githubusercontent.com/31961588/160217066-8658a272-de91-4a0d-921f-df0b1920fc5a.png)
+
+
+![image](https://user-images.githubusercontent.com/31961588/160217139-3cd7bd1c-d3e7-49ef-8de3-154fba5212b9.png)
+
+### 4.1 Código de IProductDao
+
+```Java
+package com.webservice.uts.models.dao;
+
+
+import com.webservice.uts.models.entites.Producto;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+public interface IProductoDao extends CrudRepository<Producto, Long> {
+
+	@Query("select p from Producto p where p.nombre like %?1%")
+	public List<Producto> findByNombre(String term);
+	
+	public List<Producto> findByNombreContainingIgnoreCase(String term);
+	
+	public List<Producto> findByNombreStartingWithIgnoreCase(String term);
+	
+	
+
+
+}
+
+
+
+```
+
+
