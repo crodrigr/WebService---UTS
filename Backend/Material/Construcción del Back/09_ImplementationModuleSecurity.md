@@ -118,14 +118,41 @@ public interface IUsuarioService {
 
 ```
 
-#### 2.3 Creamos la clase UsuarioServiceImp
+#### 2.3 Creamos el IUsuarioDao
 
-![image](https://user-images.githubusercontent.com/31961588/161342717-f9415d7e-b2a4-434e-afa0-19ed081e4ab3.png)
-
-#### 2.4 Código fuente
+![image](https://user-images.githubusercontent.com/31961588/161343331-c6097685-5490-4074-8382-9eb7c1601c15.png)
 
 ```Java
-package mintic2022.unab.edu.co.c4g28.facturador.models.services;
+package com.webservice.uts.models.dao;
+
+
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.webservice.uts.models.entites.Usuario;
+
+
+public interface IUsuarioDao extends CrudRepository<Usuario,Long> {
+	
+	public Usuario findByUsername(String username);
+	
+	@Query("select u from Usuario u where u.username=?1")	
+	public Usuario findByUsername2(String username);
+
+}
+
+```
+
+
+#### 2.4 Creamos la clase UsuarioServiceImp
+
+![image](https://user-images.githubusercontent.com/31961588/161343512-e085a593-7d8c-408e-b2f2-1dab218e287e.png)
+
+#### 2.5 Código fuente
+
+```Java
+package com.webservice.uts.models.services;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -142,9 +169,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import mintic2022.unab.edu.co.c4g28.facturador.models.dao.IUsuarioDao;
-import mintic2022.unab.edu.co.c4g28.facturador.models.entites.Cliente;
-import mintic2022.unab.edu.co.c4g28.facturador.models.entites.Usuario;
+import com.webservice.uts.models.dao.IUsuarioDao;
+import com.webservice.uts.models.entites.Cliente;
+import com.webservice.uts.models.entites.Usuario;
+
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
@@ -190,5 +218,6 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	}
 
 }
+
 
 ```
