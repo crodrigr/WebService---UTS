@@ -229,3 +229,69 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 Creación de paquete que contiente las clases de autenticación y autorización con jwt
 
 ![image](https://user-images.githubusercontent.com/31961588/161344587-aca3fd0e-0eb5-4669-823c-88a10b269b20.png)
+
+
+#### 6. SpringSecurityConfig
+
+Se crea la clase SpringSecurityConfig
+
+![image](https://user-images.githubusercontent.com/31961588/161344773-fe8c33fc-d4c7-445e-af77-fd4796677478.png)
+
+
+### 6.1 Código 
+
+```Java
+package com.webservice.uts.auth;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@EnableGlobalMethodSecurity(securedEnabled=true)
+@Configuration
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private UserDetailsService usuarioService;
+	
+	@Bean
+	public BCryptPasswordEncoder  passwordEncoder(){
+		return new BCryptPasswordEncoder();
+	}
+
+	@Override
+	@Autowired 
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(this.usuarioService).passwordEncoder(passwordEncoder());
+	}
+
+	@Bean("authenticationManager")	
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		 http.authorizeRequests()
+		.anyRequest().authenticated()
+		.and()
+		.csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
+	
+	
+	
+
+}
+
+
+```
