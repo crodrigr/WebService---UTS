@@ -295,3 +295,45 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 ```
+
+### 7. AuthorizationServerConfig
+
+Antes de crea la clase de AuthorizationServerConfig vamos primero la clase Application del proyecto a crear un BCryptPasswordEncoder para encriptar el password
+
+![image](https://user-images.githubusercontent.com/31961588/161345358-c6705274-fae3-4fb4-88b7-09f9cbe2e66d.png)
+
+#### 7.1 Código AuthorizationServerConfig
+
+```Java
+package com.webservice.uts;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@SpringBootApplication
+public class ApiInvoiceUtsApplication implements CommandLineRunner {
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
+	public static void main(String[] args) {
+		SpringApplication.run(ApiInvoiceUtsApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		String password = "12345";
+		
+		for (int i = 0; i < 4; i++) {
+			String passwordBcrypt = passwordEncoder.encode(password);
+			System.out.println(passwordBcrypt);
+		}
+		
+	}
+
+}
+```
+
