@@ -118,9 +118,11 @@ public interface IUsuarioService {
 
 ```
 
-#### 2.3 Creamos el IUsuarioDao
+### 3 Creamos el IUsuarioDao
 
 ![image](https://user-images.githubusercontent.com/31961588/161343331-c6097685-5490-4074-8382-9eb7c1601c15.png)
+
+#### 3.1 Código fuente
 
 ```Java
 package com.webservice.uts.models.dao;
@@ -145,11 +147,11 @@ public interface IUsuarioDao extends CrudRepository<Usuario,Long> {
 ```
 
 
-#### 2.4 Creamos la clase UsuarioServiceImp
+###  4 Creamos la clase UsuarioServiceImp
 
 ![image](https://user-images.githubusercontent.com/31961588/161343512-e085a593-7d8c-408e-b2f2-1dab218e287e.png)
 
-#### 2.5 Código fuente
+#### 4.1 Código fuente
 
 ```Java
 package com.webservice.uts.models.services;
