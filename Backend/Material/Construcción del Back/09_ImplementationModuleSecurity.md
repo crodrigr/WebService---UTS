@@ -92,6 +92,6 @@
 
 ```
 
-#### 1.3 Actulizar dependencias del proyecto
+#### 1.3 Actualizar dependencias del proyecto
 
 ![image](https://user-images.githubusercontent.com/31961588/161341932-7ab1e35c-4345-4509-ba73-f7cb335c8aab.png)
