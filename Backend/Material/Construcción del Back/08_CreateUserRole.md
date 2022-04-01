@@ -2,15 +2,18 @@
 
 ## 1. Crear la clase role entity
 
+#### 1.1 Creación de la clase role
 
 
 ![image](https://user-images.githubusercontent.com/31961588/161340093-18d2fe3a-2a3c-4cb3-86a8-a2f829a38576.png)
 
+.
 
 ![image](https://user-images.githubusercontent.com/31961588/161340176-7e39204c-26d9-44a5-908d-e7bccb44d8ce.png)
 
 
-**Código**
+
+#### 1.2 Código de la clase role
 
 ```Java
 package com.webservice.uts.models.entites;
