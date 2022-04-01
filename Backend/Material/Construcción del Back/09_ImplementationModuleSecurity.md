@@ -480,7 +480,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 ### 11 Creación de la clase AuthorizationServerConfig
 
-![image](https://user-images.githubusercontent.com/31961588/161345557-3ff568aa-0bcd-4246-84da-55f089664da2.png)
+![image](https://user-images.githubusercontent.com/31961588/161351590-9cf15c79-af09-42cb-891f-c5c3d0530be7.png)
 
 **Código fuente**
 
@@ -512,27 +512,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clientes").permitAll()
-		/*.and().cors().configurationSource(corsConfigurationSource());*/
 		.anyRequest().authenticated()
 		.and().cors().configurationSource(corsConfigurationSource());
 		
-	}
+	}	
 	
-	/*@Bean
-	public CorsConfigurationSource corsConfigurationSource(){
-		CorsConfiguration config= new CorsConfiguration();
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200","*"));
-		config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
-		config.setAllowCredentials(true);
-		config.setAllowedHeaders(Arrays.asList("Content-Type","Authorization"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", config);
-		return source;
-	}	*/
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200","*"));
 		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		config.setAllowCredentials(true);
 		config.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));		
