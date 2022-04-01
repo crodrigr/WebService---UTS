@@ -1,6 +1,6 @@
 # Implementación del modulo de seguridad en spring boot con JWT
 
-#### 1. Agregar las dependencias de spring security al proyecto. 
+### 1. Agregar las dependencias de spring security al proyecto. 
 
 ![image](https://user-images.githubusercontent.com/31961588/161341759-2af77e1a-454e-4768-9dec-4b48fa2497f6.png)
 
