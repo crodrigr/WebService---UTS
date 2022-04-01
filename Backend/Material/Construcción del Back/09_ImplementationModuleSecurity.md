@@ -302,7 +302,7 @@ Antes de crea la clase de AuthorizationServerConfig vamos primero la clase Appli
 
 ![image](https://user-images.githubusercontent.com/31961588/161345358-c6705274-fae3-4fb4-88b7-09f9cbe2e66d.png)
 
-#### 7.1 Código AuthorizationServerConfig
+#### 7.1 Código ApiInvoiceUtsApplication
 
 ```Java
 package com.webservice.uts;
@@ -336,4 +336,149 @@ public class ApiInvoiceUtsApplication implements CommandLineRunner {
 
 }
 ```
+#### 7.2 Crea InfoAdicionalToken
+
+![image](https://user-images.githubusercontent.com/31961588/161350350-a4f492cc-037a-49f6-a103-8b4cd83b7175.png)
+
+**Codigo InfoAdicionalToken**
+
+```Java
+package com.webservice.uts.auth;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.stereotype.Component;
+
+import com.webservice.uts.models.entites.Usuario;
+import com.webservice.uts.models.services.IUsuarioService;
+
+
+
+@Component
+public class InfoAdicionalToken implements TokenEnhancer {
+	
+	@Autowired
+	private IUsuarioService usuarioService;
+
+	@Override
+	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+		
+		Usuario usuario=usuarioService.findByUsername(authentication.getName());
+		
+		Map<String,Object> info = new HashMap<>();
+		info.put("info_adicional", "Hola que tal! : ".concat(authentication.getName()));
+		info.put("nombre",usuario.getNombre());
+		info.put("apellido",usuario.getApellido());
+		info.put("email",usuario.getEmail());
+
+		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);		
+			
+		return accessToken;
+	}
+	
+	
+	
+
+}
+
+
+```
+
+#### 7.3  Crea JwtConfig
+
+![image](https://user-images.githubusercontent.com/31961588/161350651-196f77a1-5888-4c6c-8896-d7f9c91ba380.png)
+
+
+**Codigo JwtConfig**
+
+```Java
+public class JwtConfig {
+	
+	public static final String LLAVE_SECRETA="alguna.clave.secreta.322929292";
+
+}
+```
+
+#### 7.4 Creación ResourceServerConfig
+
+![image](https://user-images.githubusercontent.com/31961588/161350941-23a205c4-2212-4f8b-873e-2ef573af5668.png)
+
+```Java
+import java.util.Arrays;
+
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+
+@Configuration
+@EnableResourceServer
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
+		
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clientes").permitAll()
+		/*.and().cors().configurationSource(corsConfigurationSource());*/
+		.anyRequest().authenticated()
+		.and().cors().configurationSource(corsConfigurationSource());
+		
+	}
+	
+	/*@Bean
+	public CorsConfigurationSource corsConfigurationSource(){
+		CorsConfiguration config= new CorsConfiguration();
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200","*"));
+		config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
+		config.setAllowCredentials(true);
+		config.setAllowedHeaders(Arrays.asList("Content-Type","Authorization"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", config);
+		return source;
+	}	*/
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+		config.setAllowCredentials(true);
+		config.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));		
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", config);
+		return source;
+	}
+	
+	
+	@Bean
+	public FilterRegistrationBean<CorsFilter> corsFilter(){
+		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<CorsFilter>(new CorsFilter(corsConfigurationSource()));
+		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		return bean;
+	}
+	
+	
+}
+
+
+```
+
+
+#### 7.2 Creación de la clase AuthorizationServerConfig
+
+![image](https://user-images.githubusercontent.com/31961588/161345557-3ff568aa-0bcd-4246-84da-55f089664da2.png)
 
