@@ -223,3 +223,9 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 
 
 ```
+
+### 5. Paquete auth
+
+Creación de paquete que contiente las clases de autenticación y autorización con jwt
+
+![image](https://user-images.githubusercontent.com/31961588/161344587-aca3fd0e-0eb5-4669-823c-88a10b269b20.png)
