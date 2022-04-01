@@ -231,14 +231,14 @@ Creación de paquete que contiente las clases de autenticación y autorización 
 ![image](https://user-images.githubusercontent.com/31961588/161344587-aca3fd0e-0eb5-4669-823c-88a10b269b20.png)
 
 
-#### 6. SpringSecurityConfig
+### 6. SpringSecurityConfig
 
 Se crea la clase SpringSecurityConfig
 
 ![image](https://user-images.githubusercontent.com/31961588/161344773-fe8c33fc-d4c7-445e-af77-fd4796677478.png)
 
 
-### 6.1 Código 
+#### 6.1 Código 
 
 ```Java
 package com.webservice.uts.auth;
