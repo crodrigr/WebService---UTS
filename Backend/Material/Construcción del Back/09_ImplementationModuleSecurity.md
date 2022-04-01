@@ -1,6 +1,6 @@
 # Implementación del modulo de seguridad en spring boot con JWT
 
-### 1. Agregar las dependencias de spring security al proyecto. 
+### 1. Dependencias spring security. 
 
 ![image](https://user-images.githubusercontent.com/31961588/161341759-2af77e1a-454e-4768-9dec-4b48fa2497f6.png)
 
@@ -92,12 +92,12 @@
 
 ```
 
-#### 1.3 Actualizar dependencias del proyecto
+#### 1.3 Actualizar dependencias
 
 ![image](https://user-images.githubusercontent.com/31961588/161341932-7ab1e35c-4345-4509-ba73-f7cb335c8aab.png)
 
 
-### 2. Creamos la Interfaz IUserService
+### 2. Interfaz IUserService
 
 ![image](https://user-images.githubusercontent.com/31961588/161342379-7e04c05f-e8ad-49ca-8c3f-cabb421d7c27.png)
 
@@ -118,7 +118,7 @@ public interface IUsuarioService {
 
 ```
 
-### 3 Creamos el IUsuarioDao
+### 3 Dao IUsuarioDao
 
 ![image](https://user-images.githubusercontent.com/31961588/161343331-c6097685-5490-4074-8382-9eb7c1601c15.png)
 
@@ -147,7 +147,7 @@ public interface IUsuarioDao extends CrudRepository<Usuario,Long> {
 ```
 
 
-###  4 Creamos la clase UsuarioServiceImp
+###  4 Implementación UsuarioServiceImp
 
 ![image](https://user-images.githubusercontent.com/31961588/161343512-e085a593-7d8c-408e-b2f2-1dab218e287e.png)
 
