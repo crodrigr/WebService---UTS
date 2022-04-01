@@ -336,7 +336,7 @@ public class ApiInvoiceUtsApplication implements CommandLineRunner {
 
 }
 ```
-### 7.2 Crea InfoAdicionalToken
+### 8 Crea InfoAdicionalToken
 
 ![image](https://user-images.githubusercontent.com/31961588/161350350-a4f492cc-037a-49f6-a103-8b4cd83b7175.png)
 
@@ -390,7 +390,7 @@ public class InfoAdicionalToken implements TokenEnhancer {
 
 ```
 
-### 7.3  Crea JwtConfig
+### 9  Crea JwtConfig
 
 ![image](https://user-images.githubusercontent.com/31961588/161350651-196f77a1-5888-4c6c-8896-d7f9c91ba380.png)
 
@@ -405,7 +405,7 @@ public class JwtConfig {
 }
 ```
 
-#### 7.4 Creación ResourceServerConfig
+### 10 Creación ResourceServerConfig
 
 ![image](https://user-images.githubusercontent.com/31961588/161350941-23a205c4-2212-4f8b-873e-2ef573af5668.png)
 
@@ -478,7 +478,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 ```
 
 
-### 7.2 Creación de la clase AuthorizationServerConfig
+### 11 Creación de la clase AuthorizationServerConfig
 
 ![image](https://user-images.githubusercontent.com/31961588/161345557-3ff568aa-0bcd-4246-84da-55f089664da2.png)
 
