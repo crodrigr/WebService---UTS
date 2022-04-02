@@ -231,73 +231,10 @@ Creación de paquete que contiente las clases de autenticación y autorización 
 ![image](https://user-images.githubusercontent.com/31961588/161344587-aca3fd0e-0eb5-4669-823c-88a10b269b20.png)
 
 
-### 6. SpringSecurityConfig
-
-Se crea la clase SpringSecurityConfig
-
-![image](https://user-images.githubusercontent.com/31961588/161344773-fe8c33fc-d4c7-445e-af77-fd4796677478.png)
 
 
-#### 6.1 Código 
 
-```Java
-package com.webservice.uts.auth;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-@EnableGlobalMethodSecurity(securedEnabled=true)
-@Configuration
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Autowired
-	private UserDetailsService usuarioService;
-	
-	@Bean
-	public BCryptPasswordEncoder  passwordEncoder(){
-		return new BCryptPasswordEncoder();
-	}
-
-	@Override
-	@Autowired 
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(this.usuarioService).passwordEncoder(passwordEncoder());
-	}
-
-	@Bean("authenticationManager")	
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		 http.authorizeRequests()
-		.anyRequest().authenticated()
-		.and()
-		.csrf().disable()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	}
-	
-	
-	
-
-}
-
-
-```
-
-
-### 7 Crea InfoAdicionalToken
+### 6 Crea InfoAdicionalToken
 
 ![image](https://user-images.githubusercontent.com/31961588/161350350-a4f492cc-037a-49f6-a103-8b4cd83b7175.png)
 
@@ -351,7 +288,7 @@ public class InfoAdicionalToken implements TokenEnhancer {
 
 ```
 
-### 8  Crea JwtConfig
+### 7  Crea JwtConfig
 
 ![image](https://user-images.githubusercontent.com/31961588/161350651-196f77a1-5888-4c6c-8896-d7f9c91ba380.png)
 
@@ -366,7 +303,7 @@ public class JwtConfig {
 }
 ```
 
-### 9 Creación ResourceServerConfig
+### 8 Creación ResourceServerConfig
 
 ![image](https://user-images.githubusercontent.com/31961588/161350941-23a205c4-2212-4f8b-873e-2ef573af5668.png)
 
@@ -439,72 +376,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 ```
 
 
-### 10 Creación de la clase AuthorizationServerConfig
-
-![image](https://user-images.githubusercontent.com/31961588/161351590-9cf15c79-af09-42cb-891f-c5c3d0530be7.png)
-
-**Código fuente**
-
-```Java
-package com.webservice.uts.auth;
-
-
-import java.util.Arrays;
-
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-
-
-@Configuration
-@EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-
-		
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clientes").permitAll()
-		.anyRequest().authenticated()
-		.and().cors().configurationSource(corsConfigurationSource());
-		
-	}	
-	
-	@Bean
-	public CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200","*"));
-		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-		config.setAllowCredentials(true);
-		config.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));		
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", config);
-		return source;
-	}
-	
-	
-	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilter(){
-		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<CorsFilter>(new CorsFilter(corsConfigurationSource()));
-		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		return bean;
-	}
-	
-	
-}
-
-
-```
-
-### 11 AuthorizationServerConfig
+### 9 AuthorizationServerConfig
 
 Antes de crea la clase de AuthorizationServerConfig vamos primero la clase Application del proyecto a crear un BCryptPasswordEncoder para encriptar el password
 
@@ -544,8 +416,154 @@ public class ApiInvoiceUtsApplication implements CommandLineRunner {
 
 }
 ```
+**Código de la clase AuthorizationServerConfig**
 
-### 12 Validar autorización 
+```Java
+
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+
+@Configuration
+@EnableAuthorizationServer
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	@Qualifier("authenticationManager")
+	private AuthenticationManager authenticationManager;
+	
+    @Autowired           
+    private InfoAdicionalToken infoAdicionalToken;
+
+	@Override
+	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+		security.tokenKeyAccess("permitAll()")
+		.checkTokenAccess("isAuthenticated()");
+		
+	}
+
+	@Override
+	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		clients.inMemory().withClient("angularapp")
+		.secret(passwordEncoder.encode("12345"))
+		.scopes("read","write")
+		.authorizedGrantTypes("password","refresh_token")
+		.accessTokenValiditySeconds(3600)
+		.refreshTokenValiditySeconds(3600);		
+	}
+
+	@Override
+	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+		 TokenEnhancerChain tokenEnhancerChain =new TokenEnhancerChain();
+		 tokenEnhancerChain.setTokenEnhancers(Arrays.asList(infoAdicionalToken,accessTokenConverter()));
+		 
+		 endpoints.authenticationManager(authenticationManager)
+		 .tokenStore(tokenStore())
+		 .accessTokenConverter(accessTokenConverter())
+		 .tokenEnhancer(tokenEnhancerChain);		
+	}
+	
+	@Bean
+	public JwtTokenStore tokenStore() {
+		return new JwtTokenStore(accessTokenConverter());
+	}
+
+		 @Bean
+	     public JwtAccessTokenConverter  accessTokenConverter() {
+	    	 JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+	    	 jwtAccessTokenConverter.setSigningKey(JwtConfig.LLAVE_SECRETA);
+	    	 return jwtAccessTokenConverter;
+	    	 
+	     }
+    
+
+}
+
+```
+
+### 10 SpringSecurityConfig
+
+Se crea la clase SpringSecurityConfig
+
+![image](https://user-images.githubusercontent.com/31961588/161344773-fe8c33fc-d4c7-445e-af77-fd4796677478.png)
+
+
+#### 10.1 Código 
+
+```Java
+package com.webservice.uts.auth;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@EnableGlobalMethodSecurity(securedEnabled=true)
+@Configuration
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private UserDetailsService usuarioService;
+	
+	@Bean
+	public BCryptPasswordEncoder  passwordEncoder(){
+		return new BCryptPasswordEncoder();
+	}
+
+	@Override
+	@Autowired 
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(this.usuarioService).passwordEncoder(passwordEncoder());
+	}
+
+	@Bean("authenticationManager")	
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		 http.authorizeRequests()
+		.anyRequest().authenticated()
+		.and()
+		.csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
+	
+	
+	
+
+}
+
+
+```
+
+### 11 Validar autorización 
 
 Colocar los decoradores de autorización en los endpoint para que valide con el token y role del usuario
 
@@ -799,7 +817,7 @@ public class FacturaRestController {
 
 
 
-## Notas importantes
+## 12 Notas importantes
 
 ## 1. Si presenta @Bean circula dependency [ver]('https://stackoverflow.com/questions/70036903/spring-boot-application-fails-to-start-after-upgrading-to-2-6-0-due-to-circular')
 
