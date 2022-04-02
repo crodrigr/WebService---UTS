@@ -817,9 +817,22 @@ public class FacturaRestController {
 
 ## Login postman
 
-![image](https://user-images.githubusercontent.com/31961588/161361652-f097051d-a91c-4f9a-b819-4b1ae73181b9.png)
+![image](https://user-images.githubusercontent.com/31961588/161362171-62837efa-4b60-473a-a078-fb34e5ee4f1f.png)
 
-![image](https://user-images.githubusercontent.com/31961588/161361721-60b84540-66b5-4b7f-86f2-d988b96721c2.png)
+
+![image](https://user-images.githubusercontent.com/31961588/161362190-16b51d10-5626-4463-b5f5-4fbd18f2630e.png)
+
+
+![image](https://user-images.githubusercontent.com/31961588/161362210-baf1fe3b-9a55-4116-84ed-401c08ea68ac.png)
+
+![image](https://user-images.githubusercontent.com/31961588/161362237-e47e29e4-91da-4340-8bc9-a74cb6c54c4e.png)
+
+![image](https://user-images.githubusercontent.com/31961588/161362262-88579de4-5260-4c8f-b6f8-6524ea364d2e.png)
+
+![image](https://user-images.githubusercontent.com/31961588/161362315-9531eac4-d30b-4da4-9e31-46f371eaba06.png)
+
+
+
 
 
 ## 12 Notas importantes
