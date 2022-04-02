@@ -504,8 +504,7 @@ Se crea la clase SpringSecurityConfig
 
 ![image](https://user-images.githubusercontent.com/31961588/161344773-fe8c33fc-d4c7-445e-af77-fd4796677478.png)
 
-
-#### 10.1 Código 
+**Código**
 
 ```Java
 package com.webservice.uts.auth;
