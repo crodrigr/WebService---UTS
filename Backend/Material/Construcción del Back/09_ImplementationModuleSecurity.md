@@ -510,7 +510,7 @@ Antes de crea la clase de AuthorizationServerConfig vamos primero la clase Appli
 
 ![image](https://user-images.githubusercontent.com/31961588/161345358-c6705274-fae3-4fb4-88b7-09f9cbe2e66d.png)
 
-#### 12 Código ApiInvoiceUtsApplication
+**Código ApiInvoiceUtsApplication**
 
 ```Java
 package com.webservice.uts;
@@ -545,7 +545,7 @@ public class ApiInvoiceUtsApplication implements CommandLineRunner {
 }
 ```
 
-### 13 Validar autorización 
+### 12 Validar autorización 
 
 Colocar los decoradores de autorización en los endpoint para que valide con el token y role del usuario
 
@@ -799,5 +799,11 @@ public class FacturaRestController {
 
 
 
+## Notas importantes
 
+## 1. Si presenta @Bean circula dependency [ver]('https://stackoverflow.com/questions/70036903/spring-boot-application-fails-to-start-after-upgrading-to-2-6-0-due-to-circular')
+
+La solución es tener una versión de spring boot 2.5.6 no superior 2.6.
+
+## 2. Recuerde actulizar el script de usuario la contraseña generada. 
 
