@@ -69,3 +69,67 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 ![image](https://user-images.githubusercontent.com/31961588/164358790-e8b3fa19-17bd-4a8a-8537-3823f5091bcd.png)
 
+## 4. Crear un nav bar en el header
+
+**Buscamos un ejemplo de un nav bar en boostrap y lo copiamos**
+
+![image](https://user-images.githubusercontent.com/31961588/164359439-5deb4691-3578-41a2-b1e6-d16600afd9b9.png)
+
+![image](https://user-images.githubusercontent.com/31961588/164359638-2f4c7bf2-4868-4122-8e98-e4b918d79530.png)
+
+
+**Código**
+
+```Html
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+```
+
+## 5 app.component htlm usamos el componente header creado a través del selector <app-header>
+  
+  ![image](https://user-images.githubusercontent.com/31961588/164360228-0f8961fc-d3bd-46ec-8a9b-0874d2480999.png)
+
+  ![image](https://user-images.githubusercontent.com/31961588/164360297-e3130834-7a91-4f9a-8dbc-e651988c5bf4.png)
+
+**Código**
+  
+ ```Typescript
+  <app-header></app-header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+```
