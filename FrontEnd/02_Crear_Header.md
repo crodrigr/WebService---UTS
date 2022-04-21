@@ -56,3 +56,16 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 ```
+
+## 3. Creamos un folder en el proyecto para el componente header
+
+![image](https://user-images.githubusercontent.com/31961588/164358080-d3ec885d-1ac7-4fdf-ac94-46511bbad1f7.png)
+
+**Ingreso en la terminal al directorio creado "header" y a traves del comando ng generate component header creo el componente header. El --flat es para que no me cree un directorio header, no es necesario por lo  hicimos de forma manual y ya esta creado, si no colocamos el --flat va cread dentro de header otro directorio header**
+
+![image](https://user-images.githubusercontent.com/31961588/164358535-867a652b-25e6-4b83-af2f-6a7580f0f512.png)
+
+**Observer lo que hizo: crea tres archivos: header.component.html, header.component.spec.ts, header.component.ts, header.component.css y actuliza el app.module.ts
+
+![image](https://user-images.githubusercontent.com/31961588/164358790-e8b3fa19-17bd-4a8a-8537-3823f5091bcd.png)
+
