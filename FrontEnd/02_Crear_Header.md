@@ -39,3 +39,20 @@
 </body>
 </html>
 ```
+
+**Observamos que cambia el estilo de la fuente de nuesto proyecto, esta aplicando los estilos de boostrap **
+
+![image](https://user-images.githubusercontent.com/31961588/164357421-a4ced7f3-a483-446a-9a00-2345485a4ba7.png)
+
+## 2 Definir estilos de forma global para todo el proyecto
+
+![image](https://user-images.githubusercontent.com/31961588/164357608-d32b56eb-f7e8-4e8c-bfec-c5ab22814d89.png)
+
+
+```Css
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+```
