@@ -64,6 +64,24 @@
 ![image](https://user-images.githubusercontent.com/31961588/164354371-f8d36243-be59-4964-8594-13d7f64c7328.png)
 
 
+## 4. Proyecto angular es un SPA (Single Page Aplication)
+
+**Todo lo que se haga se va cargar en <app-root> del index.html del proyecto**
+
+![image](https://user-images.githubusercontent.com/31961588/164354671-1c1dbb8e-823d-4d9a-a22e-486b738b7293.png)
+
+**Todo proyecto de angular va tener un componete principal que es el app.component. Angular construye aplicaciones a traves de componentes y un componente por lo generar cuenta de los siguientes tipo de  archivos:  .html, .ts, .css, y spect.ts como se observa.**
+  
+  ![image](https://user-images.githubusercontent.com/31961588/164355024-4b2688aa-feb6-4947-8f79-4657d7fcb2b9.png)
+  
+ **El app.module es  un archivo de configuración muy importante para un proyecto en agular, el cual, se va utilizar mucho a medida que se van creando componentes**
+  
+  ![image](https://user-images.githubusercontent.com/31961588/164355384-d5fee6d1-ee46-47c5-8066-a99d9cbfb814.png)
+  
+ **El app-routing.module.ts es el encargado de configurar las rutas que va tener nuestro proyecto, es decir del enrutamiento.**
+  
+  ![image](https://user-images.githubusercontent.com/31961588/164355538-46f811b7-14bd-4fe4-ad46-31a3c10ea9c2.png)
+
 
 
 
