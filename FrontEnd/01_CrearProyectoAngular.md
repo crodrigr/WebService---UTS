@@ -27,3 +27,46 @@
 **Observe el ambiente que tiene el angular listo para ser usado**
 
 ![image](https://user-images.githubusercontent.com/31961588/164352823-a1588fa3-cd73-4367-8b07-f6fc5eba8584.png)
+
+## 3. Crear el proyecto de angular
+
+**Con el comando ng new creamos nuestro proyecto seguido del nombre que le vamos a dar al proyecto. En este caso se va llamar invoice-uts**
+
+![image](https://user-images.githubusercontent.com/31961588/164353034-353785ea-a7cd-4579-a516-f7e41c9d84eb.png)
+
+**Yes para crear el modulo de routing, no ha problema si damos no, lo podemos hacer posterior a la creación del proyecto**
+
+![image](https://user-images.githubusercontent.com/31961588/164353213-7c8c5ae3-83a7-4d53-a1c8-1ae55068c77f.png)
+
+**Selecionamos css para el tipo de estilos a usar en nuestro proyecto**
+
+![image](https://user-images.githubusercontent.com/31961588/164353279-99a1c4e3-bc9d-4dcf-b825-8b1845ce718f.png)
+
+**Procede a conectarse al repositorio npm para descagar todas las dependencias del proyecto. Toma su tiempo y depende de su conexión a internet**
+
+![image](https://user-images.githubusercontent.com/31961588/164353845-14aaa262-cc79-418e-a4dd-00bb2601392c.png)
+
+**Se ha creado nuestro proyecto**
+
+![image](https://user-images.githubusercontent.com/31961588/164353403-233f4626-a68d-4ee3-a36b-c8652fa5a63f.png)
+
+**Subir el servicio del proyecto. Ingresamos al directorio del proyecto y ejecutamos el comando ng server**
+
+![image](https://user-images.githubusercontent.com/31961588/164354095-84d65e26-2655-44fa-9cb6-3492c50fae0a.png)
+
+**Inicio correctamente nuestra app**
+
+![image](https://user-images.githubusercontent.com/31961588/164354248-b8d5f014-452d-45e8-8c9b-ee5a60e82ed4.png)
+
+**Abrimos el navegador en http://localhost:4200/
+
+![image](https://user-images.githubusercontent.com/31961588/164354371-f8d36243-be59-4964-8594-13d7f64c7328.png)
+
+
+
+
+
+
+
+
+
