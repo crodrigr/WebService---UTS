@@ -65,7 +65,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 ![image](https://user-images.githubusercontent.com/31961588/164358535-867a652b-25e6-4b83-af2f-6a7580f0f512.png)
 
-**Observer lo que hizo: crea tres archivos: header.component.html, header.component.spec.ts, header.component.ts, header.component.css y actuliza el app.module.ts
+**Observer lo que hizo: crea tres archivos: header.component.html, header.component.spec.ts, header.component.ts, header.component.css y actuliza el app.module.ts**
 
 ![image](https://user-images.githubusercontent.com/31961588/164358790-e8b3fa19-17bd-4a8a-8537-3823f5091bcd.png)
 
