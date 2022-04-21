@@ -44,11 +44,12 @@
 
 **Procede a conectarse al repositorio npm para descagar todas las dependencias del proyecto. Toma su tiempo y depende de su conexión a internet**
 
-![image](https://user-images.githubusercontent.com/31961588/164353845-14aaa262-cc79-418e-a4dd-00bb2601392c.png)
+![image](https://user-images.githubusercontent.com/31961588/164353403-233f4626-a68d-4ee3-a36b-c8652fa5a63f.png)
+
 
 **Se ha creado nuestro proyecto**
 
-![image](https://user-images.githubusercontent.com/31961588/164353403-233f4626-a68d-4ee3-a36b-c8652fa5a63f.png)
+![image](https://user-images.githubusercontent.com/31961588/164353845-14aaa262-cc79-418e-a4dd-00bb2601392c.png)
 
 **Subir el servicio del proyecto. Ingresamos al directorio del proyecto y ejecutamos el comando ng server**
 
