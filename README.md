@@ -1,4 +1,4 @@
-# Estimados estudiantes, arriba esta publicado el paracial para el segundo corte. El archivo se llama webservice_parcia2.pdf
+# Estimados estudiantes, arriba esta publicado el parcial para el segundo corte. El archivo se llama webservice_parcia2.pdf
 
 # WebService-UTS
 
