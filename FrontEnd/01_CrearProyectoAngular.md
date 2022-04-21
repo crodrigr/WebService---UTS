@@ -82,6 +82,15 @@
   
   ![image](https://user-images.githubusercontent.com/31961588/164355538-46f811b7-14bd-4fe4-ad46-31a3c10ea9c2.png)
 
+## 5. Crear un hola mundo en nuestro app.component.html 
+  
+  ![image](https://user-images.githubusercontent.com/31961588/164356070-61b52e98-be06-4b97-958f-f7f756ac98f4.png)
+
+  
+  ![image](https://user-images.githubusercontent.com/31961588/164355972-f95690d1-a996-4641-9a45-ff7ca16039e3.png)
+
+  
+  
 
 
 
