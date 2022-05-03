@@ -16,8 +16,8 @@ Archivos que se crearon
 
 ### 3. Creamos los modelos de cliente. 
 
-En la parte del front vamos necesitar crear el tipo de dato cliente y regiones. Hay dos maneras: clase o interfaz. Se usa clase cuando vayamos a instanciar objetos a traves del
-operador new, y interfaz en caso contrario. En nuestro caso lo vamos hacer con interfaz por que tomamos la data desde el back. 
+En la parte del front vamos necesitar crear el tipo de dato clientes y regiones. Hay dos maneras: clase o interfaz. Se usa clase cuando vayamos a instanciar objetos a traves del
+operador new, e interfaz en caso contrario. En nuestro caso lo vamos hacer con interfaz por que tomamos la data desde el back. 
 
 ### 3.1 Creamos la interfaz cliente
 
@@ -39,7 +39,7 @@ Definimos los atributos de región que son los mismo atributos que la clase regi
 
 ### 3.3 Relacionamos el cliente con region.
 
-Recuerde que un cliente una region, por lo tanto, existe una relación, similar que la del back entre region y cliente. 
+Recuerde que un cliente tiene una region, por lo tanto, existe una relación, similar a la del back entre region y cliente. 
 
 En **clients.ts** se hace el import de region y se define el atributo region. 
 
