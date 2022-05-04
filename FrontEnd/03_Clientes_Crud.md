@@ -227,4 +227,57 @@ export class ClienteComponent implements OnInit {
 
 ```
 
+### 5.3 Configurar routing y app.module
 
+![image](https://user-images.githubusercontent.com/31961588/166614536-0468932a-998f-4824-8834-a6c9897b6603.png)
+
+**Código app.module.ts**
+
+```TypeScript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { ClienteComponent } from './Cliente/cliente.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ClienteComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule 
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+
+![image](https://user-images.githubusercontent.com/31961588/166614577-313848e4-3b2f-4bdb-ab42-db3235a8d715.png)
+
+**Código del app-routing.module.ts**
+
+```TypeScript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ClienteComponent } from './Cliente/cliente.component';
+
+const routes: Routes = [ 
+   { path: 'clientes', component: ClienteComponent }
+   ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
