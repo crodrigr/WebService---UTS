@@ -208,7 +208,7 @@ export class ClienteComponent implements OnInit {
         </thead>
         <tbody>      
             <tr *ngFor="let cliente of clientes">
-            <td><button type="button" class="btn btn-info" (click)="abrirModal(cliente)">Ver</button></td>
+            <td><button type="button" class="btn btn-info" >Ver</button></td>
             <td>{{cliente.id}}</td>
             <td>{{cliente.nombre}}</td>
             <td>{{cliente.apellido}}</td>
@@ -224,6 +224,7 @@ export class ClienteComponent implements OnInit {
     </div>
     </div>
     
+
 ```
 
 
