@@ -180,6 +180,50 @@ export class ClienteComponent implements OnInit {
 
 ![image](https://user-images.githubusercontent.com/31961588/166612745-442691b0-7bbb-4a0e-8dee-a42405e4ed6b.png)
 
+**Código cliente.componente.html**
 
+```Html
+<div class="card border-primary mb3">
+    <div class="card-header">Clientes</div>
+    <div class="card-body text-primary">
+       <h5 class="card-title">Listado de clientes</h5>
+      <div class="my-2 text-left">       
+      </div>
+      <div *ngIf="clientes?.length==0" class="alert alert-info">
+       No hay registros en la base de datos!
+      </div>
+      <table class="table table-border table-hover text-primary">
+        <thead>
+           <tr>
+              <th></th>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Fecha</th>
+              <th>Crear factura</th>
+              <th>Actualizar</th>
+              <th>Eliminar</th>
+           </tr>
+        </thead>
+        <tbody>      
+            <tr *ngFor="let cliente of clientes">
+            <td><button type="button" class="btn btn-info" (click)="abrirModal(cliente)">Ver</button></td>
+            <td>{{cliente.id}}</td>
+            <td>{{cliente.nombre}}</td>
+            <td>{{cliente.apellido}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.createAt}}</td>
+            <td><button type="button" class="btn btn-secondary"  >Crear factura</button></td>
+            <td><button type="button" class="btn btn-success" >Actualizar</button></td>
+            <td><button type="button" class="btn btn-danger" >Elminar</button></td>
+           </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    </div>
+    
+```
 
 
