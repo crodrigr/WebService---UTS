@@ -38,3 +38,11 @@ listado de todas la regiones que tenemos en nuestra base datos.
     return this.http.get<Region[]>(this.urlApi + '/clientes/regiones');
   }
 ```
+
+### 1.3.2 Método getRegiones en el form.component.ts
+
+En el componente del form, definimos un metodo que, traiga el back todas la regiones y las guardes en la lista regiones, este método se debe ejecutar cada vez 
+que se carga el componente form.
+
+![image](https://user-images.githubusercontent.com/31961588/166976252-7518cc50-d197-4400-b7eb-9036c10bee4a.png)
+
