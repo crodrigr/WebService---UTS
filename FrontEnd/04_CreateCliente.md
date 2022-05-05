@@ -2,6 +2,11 @@
 
 # 1. Crear el componente form, el formulario para crear y actulizar. 
 
+Antes de iniciar con la creación de formulario de creación de cliente se debe importar el FormsModule (ngModel) o ReactiveFormsModule en el app.module de su proyecto
+
+![image](https://user-images.githubusercontent.com/31961588/167023791-455618b3-a761-41dc-9cda-badf03dd532d.png)
+
+
 ### 1.1 Crear el componente form crear cliente. 
 
 ![image](https://user-images.githubusercontent.com/31961588/166971616-971546c2-3023-4f2e-9680-408f3b9f85fa.png)
