@@ -74,7 +74,7 @@ En el **form.component.ts**
 ![image](https://user-images.githubusercontent.com/31961588/167025607-e0e92e9a-4b44-4e2e-92f6-a217ab18c83d.png)
 
 
-## 2 Código final de form.component.ts, form.componente.html cliente.service.ts
+# 2 Código final de form.component.ts, form.componente.html cliente.service.ts
 
 ### 2.1 form.component.ts
 ```TypeScript
