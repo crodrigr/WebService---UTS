@@ -74,3 +74,172 @@ En el **form.component.ts**
 ![image](https://user-images.githubusercontent.com/31961588/167025607-e0e92e9a-4b44-4e2e-92f6-a217ab18c83d.png)
 
 
+## 2 Código final de form.component.ts, form.componente.html cliente.service.ts
+
+### 2.1.form.component.ts
+```TypeScript
+
+import { Component, OnInit } from '@angular/core';
+import { Cliente } from 'src/app/Cliente/cliente';
+import { Region }  from 'src/app/Cliente/region';
+import { ClienteService} from 'src/app/Cliente/cliente.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
+})
+export class FormComponent implements OnInit {
+
+  titulo: string="Crear Cliente";
+  
+  cliente: Cliente={};
+  regiones: Region[]=[];  
+  errores: string[]=[];
+
+  constructor(private clienteService: ClienteService,
+              private router: Router,
+              private activatedRouter: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.getRegiones();
+  }
+
+  getRegiones(): void{
+    this.clienteService.getRegiones().subscribe(respuesta=>{
+      this.regiones=respuesta;
+    }
+    )
+  }
+
+  create(): void{
+    this.clienteService.create(this.cliente).subscribe({
+       next: (cliente: Cliente)=>{
+          this.router.navigate(['/clientes']);          
+       },
+       error: (err)=>{
+        this.errores = err.error.errors as string[];
+        console.error('Código del error desde el backend: ' + err.status);
+        console.error(err.error.errors);  
+       } 
+    });    
+  }
+  compararRegion(o1: Region, o2: Region): boolean {
+    if (o1 === undefined && o2 === undefined) {
+      return true;
+    }
+    return o1 === null || o2 === null || o1 === undefined || o2 === undefined ? false : o1.id === o2.id;
+  }
+}
+
+```
+
+## 2.2 form.componente.html
+```TypeScript
+<ul class="alert alert-danger" *ngIf="errores.length > 0">
+    <li *ngFor="let err of errores">
+      {{ err }}
+    </li>
+  </ul>
+  <div class="card bg-dark text-white my-2"   style="width: 50%; margin: auto auto;"> 
+     <div class="card-header">{{titulo}}</div>
+     <div class="card-body">
+      <form #clienteForm="ngForm">
+        <div class="form-group row">
+          <label for="nombre" class="col-form-label colm-sm-2">Nombre</label>
+           <div class="col-sm-6">            
+               <input type="text" class="form-control" [(ngModel)]="cliente.nombre" id="nombre" name="nombre" style="display:inline; width:300px;" required>
+            </div>
+        </div>
+        <div class="form-group row">
+          <label for="apellido" class="col-form-label colm-sm-2">Apellido</label>
+           <div class="col-sm-6"> 
+             <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" style="display:inline; width:300px;" required>            
+           </div>
+        </div>     
+        <div class="form-group row">
+          <label for="email" class="col-form-label colm-sm-2">Email</label>
+           <div class="col-sm-6">            
+            <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" style="display:inline; width:300px;" required>          
+           </div>
+        </div>
+        <div class="form-group row">
+          <label for="createAt" class="col-form-label colm-sm-2">Fecha</label>
+           <div class="col-sm-6">            
+               <input type="date" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" style="display:inline; width:300px;">
+           </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="region" class="col-form-label colm-sm-2">Región</label>
+           <div class="col-sm-6">            
+               <select [compareWith]="compararRegion" class="form-control" [(ngModel)]="cliente.region" name="region" style="width: 300px;">
+                 <option [value]="undefined">---Seleccionar una región----</option>
+                 <option *ngFor="let region of regiones" [value]=region>{{region.nombre}}</option>              
+               </select>
+           </div>
+        </div>
+       
+        
+        <div class="form-group my-3 row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary " role="button" (click)='create()' [disabled]="!clienteForm.form.valid">Crear</button>
+            <button class="btn btn-danger m-2"  role="button" routerLink='/clientes'>Cancelar</button>
+          </div>
+        </div>
+      </form>
+  
+     </div>  
+  </div>
+  
+
+```
+
+## 2.3 cliente.service.ts
+```TypeScript
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpRequest, HttpEvent,HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
+import { Cliente } from './cliente';
+import { Region } from './region'
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ClienteService {
+
+  private urlApi: string ="";
+
+  constructor(private http: HttpClient){
+     this.urlApi = environment.apiUrl+'/api';
+   }
+
+  getClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(this.urlApi + '/clientes');
+  }
+
+  getRegiones(): Observable<Region[]> {
+    return this.http.get<Region[]>(this.urlApi + '/clientes/regiones');
+  }
+
+  create(cliente: Cliente): Observable<Cliente>{
+    return this.http.post<Cliente>(`${this.urlApi}/clientes`, cliente).pipe(
+       map((response: any)=> response.cliente as Cliente),
+       catchError(e=>{
+         if(e.status==400){
+           return throwError(()=>e);
+         }
+         if(e.errors.mensaje){
+           console.log(e.errors.mensaje);
+         } 
+         return throwError(()=>e);
+       })
+    );
+  }
+
+}
+
+```
