@@ -1,4 +1,4 @@
-# Crear crud de clientes
+# Crear list clientes
 
 ### 1. Creamos el directorio cliente donde va ir los componentes del modulo de clientes. 
 
