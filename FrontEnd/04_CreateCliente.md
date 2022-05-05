@@ -67,4 +67,10 @@ En el **form.component.ts**
 
 ![image](https://user-images.githubusercontent.com/31961588/167016136-4d7b99b1-affb-4e73-aad2-4f1924eb5927.png)
 
+## 1.4 Formulario html crear cliente
+
+![image](https://user-images.githubusercontent.com/31961588/167025560-27827ddb-5b64-4681-812d-8bb84c57cf08.png)
+
+![image](https://user-images.githubusercontent.com/31961588/167025607-e0e92e9a-4b44-4e2e-92f6-a217ab18c83d.png)
+
 
