@@ -37,5 +37,4 @@ listado de todas la regiones que tenemos en nuestra base datos.
   getRegiones(): Observable<Region[]> {
     return this.http.get<Region[]>(this.urlApi + '/clientes/regiones');
   }
-
-``
+```
