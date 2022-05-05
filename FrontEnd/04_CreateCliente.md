@@ -76,7 +76,7 @@ En el **form.component.ts**
 
 ## 2 Código final de form.component.ts, form.componente.html cliente.service.ts
 
-### 2.1.form.component.ts
+### 2.1 form.component.ts
 ```TypeScript
 
 import { Component, OnInit } from '@angular/core';
@@ -135,7 +135,7 @@ export class FormComponent implements OnInit {
 
 ```
 
-## 2.2 form.componente.html
+### 2.2 form.componente.html
 ```TypeScript
 <ul class="alert alert-danger" *ngIf="errores.length > 0">
     <li *ngFor="let err of errores">
@@ -196,7 +196,7 @@ export class FormComponent implements OnInit {
 
 ```
 
-## 2.3 cliente.service.ts
+### 2.3 cliente.service.ts
 ```TypeScript
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent,HttpHeaders } from '@angular/common/http';
