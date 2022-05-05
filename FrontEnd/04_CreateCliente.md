@@ -58,5 +58,8 @@ Método create cliente en el form.component.ts
 
 ![image](https://user-images.githubusercontent.com/31961588/166979219-d41c5495-cdfe-4b10-b99c-12812c817aae.png)
 
+En el **form.component.ts** 
+
+![image](https://user-images.githubusercontent.com/31961588/167016136-4d7b99b1-affb-4e73-aad2-4f1924eb5927.png)
 
 
