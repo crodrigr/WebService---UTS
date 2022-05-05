@@ -46,3 +46,17 @@ que se carga el componente form.
 
 ![image](https://user-images.githubusercontent.com/31961588/166976252-7518cc50-d197-4400-b7eb-9036c10bee4a.png)
 
+### 1.3.4 Método crearCliente en el form.component.ts
+
+Se crea en el cliente.service.ts el método create que hacer una petición post al back pasandole el objeto cliente. Se importa map,catchError , y tap
+
+
+![image](https://user-images.githubusercontent.com/31961588/166978585-50de134c-4fb8-49e2-9bfe-f7f428572b9c.png)
+
+
+Método create cliente en el form.component.ts
+
+![image](https://user-images.githubusercontent.com/31961588/166979219-d41c5495-cdfe-4b10-b99c-12812c817aae.png)
+
+
+
