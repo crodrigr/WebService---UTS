@@ -20,7 +20,7 @@ Antes de iniciar con la creación de formulario de creación de cliente se debe 
 
 ![image](https://user-images.githubusercontent.com/31961588/166973780-cc4c8a6e-a679-4a94-ab6d-65098cd3847d.png)
 
-### 1.3 Creación un método que nos traiga el listado de todas las regiones para seleccionar en el formulario de cliente
+### 1.3 Crear un método que nos traiga el listado de todas las regiones para seleccionar en el formulario de cliente
 
 #### 1.3.1 Crear servicio getRegiones en el cliente.service.ts
 
