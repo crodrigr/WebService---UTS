@@ -16,3 +16,12 @@
 
 
 
+## Error
+
+![image](https://user-images.githubusercontent.com/31961588/167060267-1ec92350-84eb-432a-b6cd-fbf4da4f6cf5.png)
+
+Modifcamos el tsconfig.json el strict lo colocamos en false
+
+![image](https://user-images.githubusercontent.com/31961588/167060381-7ec7816f-7ef3-41e3-b2d1-00ea092ff721.png)
+
+
