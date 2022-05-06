@@ -33,5 +33,16 @@ Se define el método getCliente.
 
 ![image](https://user-images.githubusercontent.com/31961588/167057207-0b2b88e4-b4a1-4bae-9065-6937c4e30d9d.png)
 
+### 4.3 obtener cliente cuando cargarmos el formulario desde el botón actulizar
+
+![image](https://user-images.githubusercontent.com/31961588/167057830-3c644bc7-320b-477a-af52-6d207e4ca0a7.png)
+
+![image](https://user-images.githubusercontent.com/31961588/167058376-42ed0348-4391-468a-a8df-f07a9143faf9.png)
+
+![image](https://user-images.githubusercontent.com/31961588/167058449-a7fe7657-ce8d-4b39-a732-c45be2b4dced.png)
+
+
+
+
 
 
