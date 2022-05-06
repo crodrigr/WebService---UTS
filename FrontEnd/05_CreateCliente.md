@@ -71,7 +71,7 @@ En el **form.component.ts**
 
 ![image](https://user-images.githubusercontent.com/31961588/167025560-27827ddb-5b64-4681-812d-8bb84c57cf08.png)
 
-![image](https://user-images.githubusercontent.com/31961588/167025607-e0e92e9a-4b44-4e2e-92f6-a217ab18c83d.png)
+![image](https://user-images.githubusercontent.com/31961588/167052942-3d66395e-1e76-4be4-9792-e897fe9f8bb0.png)
 
 
 ## 1.5 Colocar botón crear en la tabla clientes
@@ -170,7 +170,7 @@ export class FormComponent implements OnInit {
 ```
 
 ### 2.2 form.componente.html
-```TypeScript
+```Html
 <ul class="alert alert-danger" *ngIf="errores.length > 0">
     <li *ngFor="let err of errores">
       {{ err }}
@@ -209,8 +209,8 @@ export class FormComponent implements OnInit {
           <label for="region" class="col-form-label colm-sm-2">Región</label>
            <div class="col-sm-6">            
                <select [compareWith]="compararRegion" class="form-control" [(ngModel)]="cliente.region" name="region" style="width: 300px;">
-                 <option [value]="undefined">---Seleccionar una región----</option>
-                 <option *ngFor="let region of regiones" [value]=region>{{region.nombre}}</option>              
+                 <option [ngValue]="undefined">---Seleccionar una región----</option>
+                 <option *ngFor="let region of regiones" [ngValue]="region">{{region.nombre}}</option>              
                </select>
            </div>
         </div>
@@ -226,6 +226,8 @@ export class FormComponent implements OnInit {
   
      </div>  
   </div>
+  
+
   
 
 ```
