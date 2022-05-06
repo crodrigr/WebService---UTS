@@ -24,7 +24,7 @@ Antes de iniciar con la creación de formulario de creación de cliente se debe 
 
 #### 1.3.1 Crear servicio getRegiones en el cliente.service.ts
 
-**Importamos la interfaz region en cliente.service.ts
+**Importamos la interfaz region en cliente.service.ts**
 
 ![image](https://user-images.githubusercontent.com/31961588/166974654-6ae4b98b-f6bb-4df0-a4a6-f863616df33b.png)
 
