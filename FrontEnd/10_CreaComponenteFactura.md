@@ -84,8 +84,16 @@
 
 ![image](https://user-images.githubusercontent.com/31961588/168716133-ac88bfe1-b7a8-4df3-aa6f-873627c3397b.png)
 
+## 3 Configuramos la ruta
 
-## 3 Fuentes
+**app.routing.module.ts**
+![image](https://user-images.githubusercontent.com/31961588/168717375-54c056f5-edf8-4d64-948e-68ea433d5b89.png)
+
+**cliente.component.html**
+![image](https://user-images.githubusercontent.com/31961588/168717534-42449021-1e99-4d18-8dd1-8a78781ba9e1.png)
+
+
+## 4 Fuentes
 
 **facturas.component.ts**
 
