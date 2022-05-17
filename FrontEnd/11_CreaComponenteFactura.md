@@ -60,6 +60,30 @@
 
 ![image](https://user-images.githubusercontent.com/31961588/168714484-c5aeb860-462f-4cab-9497-a835b3ba17ac.png)
 
+**D**
+
+![image](https://user-images.githubusercontent.com/31961588/168715323-7acedbd2-7e55-4e91-8f54-c5436cfacac4.png)
+
+**Método filtre que llama al back**
+
+![image](https://user-images.githubusercontent.com/31961588/168715369-8890c1ad-ec93-408e-b680-3471cb567d8a.png)
+
+**Método que al seleccionar un producto**
+
+![image](https://user-images.githubusercontent.com/31961588/168715748-a8e80823-da39-4e6f-a1fb-aef92f447fc6.png)
+
+**Mensaje si la factura no tiene lineas**
+
+![image](https://user-images.githubusercontent.com/31961588/168715958-40a55517-e2c1-43ca-bbad-37b9e62a07b1.png)
+
+**Tabla que muestra los productos seleccionados**
+
+![image](https://user-images.githubusercontent.com/31961588/168716046-aa72363f-77f5-4239-aa5f-21ca5d7656f0.png)
+
+**Muestra el total de la factura**
+
+![image](https://user-images.githubusercontent.com/31961588/168716133-ac88bfe1-b7a8-4df3-aa6f-873627c3397b.png)
+
 
 
 
