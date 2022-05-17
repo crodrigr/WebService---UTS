@@ -44,3 +44,100 @@
 ![image](https://user-images.githubusercontent.com/31961588/168706822-b50f347d-d6f6-4088-9437-a976ff8b2d72.png)
 
 
+## 3. Fuentes
+
+**Producto.ts**
+
+```TypeScript
+export class Producto {
+    id: number;
+    nombre: string;
+    precio: number;
+  }
+```
+
+**Item-factura.ts**
+
+```TypeScript
+import { Producto } from './producto';
+
+export class ItemFactura {
+  producto: Producto;
+  cantidad: number = 1;
+  importe: number;
+
+  public calcularImporte(): number {
+    return this.cantidad * this.producto.precio;
+  }
+}
+```
+
+**Factura.ts**
+
+```TypeScript
+import { ItemFactura } from './item-factura';
+import { Cliente } from '../../Cliente/cliente';
+
+export class Factura {
+  id: number;
+  descripcion: string;
+  observacion: string;
+  items: Array<ItemFactura> = [];
+  cliente: Cliente;
+  total: number;
+  createAt: string;
+
+  calcularGranTotal(): number {
+    this.total =0 ;
+    this.items.forEach((item: ItemFactura) => {
+      this.total += item.calcularImporte();
+    });
+    return this.total;
+  }
+
+
+}
+```
+
+**factura.service.ts**
+
+```TypeScript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Factura } from '../models/factura';
+import { Producto } from '../models/producto';
+import { environment } from 'src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FacturaService {
+
+  private urlApi: string ="";
+
+  constructor(private http: HttpClient) {
+     this.urlApi = environment.apiUrl+'/api';
+   }
+
+   getFactura(id: number): Observable<Factura> {
+    return this.http.get<Factura>(`${this.urlApi}/facturas/${id}`);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.urlApi}/facturas/${id}`);
+  }
+
+  filtrarProductos(term: string): Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.urlApi}/facturas/filtrar-productos/${term}`);
+  }
+
+  create(factura: Factura): Observable<Factura> {
+    return this.http.post<Factura>(this.urlApi+'/facturas', factura);
+  }
+
+
+}
+```
+
+
