@@ -108,12 +108,13 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, flatMap,startWith} from 'rxjs/operators';
 import { Factura } from './models/factura';
-import { ClienteService } from 'src/app/cliente/cliente.service';
+import { ClienteService } from '../../app/Cliente/cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FacturaService } from './services/factura.service';
 import { Producto } from './models/producto';
 import { ItemFactura } from './models/item-factura';
 import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-facturas',
@@ -122,6 +123,7 @@ import swal from 'sweetalert2';
 })
 export class FacturasComponent implements OnInit {
 
+  
   titulo: string = 'Nueva Factura';
   factura: Factura = new Factura();
   autocompleteControl = new FormControl();
@@ -226,8 +228,10 @@ export class FacturasComponent implements OnInit {
     }
   }
 
+  
 
 }
+
 
 ```
 
@@ -235,88 +239,161 @@ export class FacturasComponent implements OnInit {
 
 ```TypeScript
 <div class="card bg-light">
-    <div class="card-header">{{titulo}}: {{factura.descripcion}}</div>
-    <div class="card-body">
-      <h4 class="card-title">
-        <a [routerLink]="['/clientes']" class="btn btn-light btn-xs">&laquo; volver</a>
-      </h4>
+  <div class="card-header">{{titulo}}: {{factura.descripcion}}</div>
+  <div class="card-body">
+    <h4 class="card-title">
+      <a [routerLink]="['/clientes']" class="btn btn-light btn-xs">&laquo; volver</a>
+    </h4>
+
+    <form #facturaForm="ngForm">
+
+      <div class="form-group row" *ngIf="factura.cliente">
+        <label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
+        <div class="col-sm-6">
+          <input type="text" name="cliente" value="{{factura.cliente.nombre}} {{factura.cliente.apellido}}" class="form-control" disabled>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+        <div class="col-sm-6">
+          <input type="text" name="descripcion" [(ngModel)]="factura.descripcion" class="form-control" required #descripcion="ngModel">
+          <div class="alert alert-danger" *ngIf="descripcion.invalid && descripcion.touched || descripcion.invalid && facturaForm.submitted">
+            La descripción es requerida.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="observacion" class="col-sm-2 col-form-label">Observación</label>
+        <div class="col-sm-6">
+          <textarea name="observacion" [(ngModel)]="factura.observacion" class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input type="text" placeholder="Añadir producto" aria-label="Productos" matInput [formControl]="autocompleteControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarNombre" (optionSelected)="seleccionarProducto($event.option.value)">
+              <mat-option *ngFor="let producto of productosFiltrados | async" [value]="producto">
+                {{producto.nombre}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="autocompleteControl.invalid && facturaForm.submitted">
+            La factura no puede no tener líneas!.
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info my-4" *ngIf="factura.items.length == 0">
+        No hay líneas asignadas para la factura. Debe agregar al menos una!
+      </div>
+      <table class="table table-striped table-hover table-sm" *ngIf="factura.items.length > 0">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of factura.items">
+            <td>{{item.producto.nombre}}</td>
+            <td>{{item.producto.precio |currency:'COP':"symbol"}}</td>
+            <td><input type="number" value="{{item.cantidad}}" class="form-control col-sm-4" (change)="actualizarCantidad(item.producto.id, $event)"></td>
+            <td>{{item.calcularImporte() |currency:'COP':'symbol'}}</td>
+            <td><button class="btn btn-danger btn-sm" type="button"
+              (click)="eliminarItemFactura(item.producto.id)">x</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h5 class="float-right" *ngIf="factura.items.length > 0">Gran Total: <span>{{factura.calcularGranTotal() |currency:'COP':'symbol' }}</span></h5>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <input type="submit" (click)="create(facturaForm)" value="Crear Factura" class="btn btn-secondary">
+        </div>
+      </div>
       
-      <form #facturaForm="ngForm">
+    </form>
 
-        <div class="form-group row" *ngIf="factura.cliente">
-          <label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
-          <div class="col-sm-6">
-            <input type="text" name="cliente" value="{{factura.cliente.nombre}} {{factura.cliente.apellido}}" class="form-control" disabled>
-          </div>
-        </div>
-  
-        <div class="form-group row">
-          <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
-          <div class="col-sm-6">
-            <input type="text" name="descripcion" [(ngModel)]="factura.descripcion" class="form-control" required #descripcion="ngModel">
-            <div class="alert alert-danger" *ngIf="descripcion.invalid && descripcion.touched || descripcion.invalid && facturaForm.submitted">
-              La descripción es requerida.
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-6">
-              <mat-form-field>
-                <input type="text" placeholder="Añadir producto" aria-label="Productos" matInput [formControl]="autocompleteControl" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarNombre" (optionSelected)="seleccionarProducto($event.option.value)">
-                  <mat-option *ngFor="let producto of productosFiltrados | async" [value]="producto">
-                    {{producto.nombre}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-              <div class="alert alert-danger" *ngIf="autocompleteControl.invalid && facturaForm.submitted">
-                La factura no puede no tener líneas!.
-              </div>
-            </div>
-          </div>
-
-          <div class="alert alert-info my-4" *ngIf="factura.items.length == 0">
-            No hay líneas asignadas para la factura. Debe agregar al menos una!
-          </div>
-
-          <table class="table table-striped table-hover table-sm" *ngIf="factura.items.length > 0">
-            <thead>
-              <tr>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of factura.items">
-                <td>{{item.producto.nombre}}</td>
-                <td>{{item.producto.precio |currency:'COP':"symbol"}}</td>
-                <td><input type="number" value="{{item.cantidad}}" class="form-control col-sm-4" (change)="actualizarCantidad(item.producto.id, $event)"></td>
-                <td>{{item.calcularImporte() |currency:'COP':'symbol'}}</td>
-                <td><button class="btn btn-danger btn-sm" type="button"
-                  (click)="eliminarItemFactura(item.producto.id)">x</button></td>
-              </tr>
-            </tbody>
-          </table>
-          <h5 class="float-right" *ngIf="factura.items.length > 0">Gran Total: <span>{{factura.calcularGranTotal() |currency:'COP':'symbol' }}</span></h5>
-    
-  
-        <div class="form-group row">
-          <label for="observacion" class="col-sm-2 col-form-label">Observación</label>
-          <div class="col-sm-6">
-            <textarea name="observacion" [(ngModel)]="factura.observacion" class="form-control"></textarea>
-          </div>
-        </div>  
-     
-      </form>
-
-  
-    </div>
   </div>
+</div>
+
+
+
+```
+**app.module.ts**
+
+```TypeScript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { ClienteComponent } from './Cliente/cliente.component';
+import { FormComponent } from './Cliente/form.component';
+import { FacturasComponent } from './Facturas/facturas.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ClienteComponent,
+    FormComponent,
+    FacturasComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 
 ```
 
+**app-routing.module.ts**
 
+```TypeScript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ClienteComponent } from './Cliente/cliente.component';
+import { FormComponent } from './Cliente/form.component';
+import { FacturasComponent } from './Facturas/facturas.component';
+
+const routes: Routes = [ 
+   { path: 'clientes', component: ClienteComponent },
+   { path: 'clientes/form', component: FormComponent },
+   { path: 'clientes/form/:id', component: FormComponent},
+   { path: 'facturas/form/:clienteId', component: FacturasComponent}
+   ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
