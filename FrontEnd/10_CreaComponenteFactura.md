@@ -56,6 +56,11 @@
 
 ![image](https://user-images.githubusercontent.com/31961588/168714690-8c1e3eb8-3e0e-4351-a2fd-d5f77a8d36c2.png)
 
+**Instalar angular material**
+
+![image](https://user-images.githubusercontent.com/31961588/168719978-bc26aed9-a6f3-4ffa-b497-1d42cd223419.png)
+
+
 **Nota al usar un componente de angular material se debe importa en el app.modulo las librerias del componente para que estén disponible en todo el proyecto**
 
 ![image](https://user-images.githubusercontent.com/31961588/168714484-c5aeb860-462f-4cab-9497-a835b3ba17ac.png)
