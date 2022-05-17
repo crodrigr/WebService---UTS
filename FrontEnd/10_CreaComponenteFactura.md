@@ -63,7 +63,7 @@
 
 **Nota al usar un componente de angular material se debe importa en el app.modulo las librerias del componente para que estén disponible en todo el proyecto**
 
-![image](https://user-images.githubusercontent.com/31961588/168714484-c5aeb860-462f-4cab-9497-a835b3ba17ac.png)
+![image](https://user-images.githubusercontent.com/31961588/168921735-b7ea3dab-c266-40fc-9de5-ca7bf46c122f.png)
 
 **D**
 
