@@ -44,4 +44,20 @@ Para esto se va abril desde un modal del listado de clientes.
 
 ![image](https://user-images.githubusercontent.com/31961588/168932612-083f9688-9277-4b12-a000-f492a83424e5.png)
 
+## 8. Ajuste al cliente.component.ts para detalle
+
+![image](https://user-images.githubusercontent.com/31961588/168936717-7be3f406-b4ec-47e6-b03d-32ecbbd5de2d.png)
+
+![image](https://user-images.githubusercontent.com/31961588/168936802-e806c49c-ef65-45df-95de-5d9b2edabfc6.png)
+
+![image](https://user-images.githubusercontent.com/31961588/168936856-6ba7be35-d7c6-404d-bc0b-75962358800b.png)
+
+![image](https://user-images.githubusercontent.com/31961588/168936967-b72bad51-f24b-4aa6-9b62-ebfcaead1e2e.png)
+
+![image](https://user-images.githubusercontent.com/31961588/168937141-1c25904b-b22e-42ea-92ca-a3e3981648cf.png)
+
+
+
+
+
 
